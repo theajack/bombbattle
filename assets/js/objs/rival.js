@@ -4,6 +4,7 @@ var RIVAL={
   "isAi":true,
   "size":0,
   "set":[],
+  "idNum":0,//id
   "init":function(){
     for(var i=0;i<blockNum;i++){
       this.set[i]=[];
@@ -27,7 +28,7 @@ var RIVAL={
     this.set[index][this.set[index].length]=rival;
   }
 };function Rival(data,i){
-  this.id=parseInt(data.id);
+  this.id=++RIVAL.idNum;
   this.x=parseFloat(data.x);//相对于map
   this.y=parseFloat(data.y);
   this.posBi=i;//posBlockIndex;
@@ -39,7 +40,7 @@ var RIVAL={
   this.alp=2;
   this.range=range;//半径
   this.color="#0f0";
-  this.name=data.id;
+  this.name="doge"+this.id;
   
   this.isInvici=true;
   
@@ -68,7 +69,7 @@ var RIVAL={
     }
   }
   getNameTextStyle();
-  ctx.fillText(this.name,pos.x,pos.y);
+  ctx.fillText(this.name+"  "+this.hp,pos.x,pos.y);
   if(this.showStatu){
     this.drawStatu();
   }

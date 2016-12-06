@@ -133,12 +133,14 @@ var BOMBER={
       default:break;
     }
     if(skill.type<SKILL.type.num){
-      mySocket.send({
-        "pid":this.id,
-        "id":skill.id,
-        "posBi":skill.posBi,
-        "skillType":skill.type
-      },method.getSkill);
+      if(!RIVAL.isAi){
+        mySocket.send({
+          "pid":this.id,
+          "id":skill.id,
+          "posBi":skill.posBi,
+          "skillType":skill.type
+        },method.getSkill);
+      }
     }
     SKILL.removeObj(skill);
   }
@@ -214,7 +216,9 @@ var BOMBER={
       "power":this.power,
       "damage":this.damage
     };
-    mySocket.send(pb,method.addBomb);
+    if(!RIVAL.isAi){
+      mySocket.send(pb,method.addBomb);
+    }
     this.bombNum++;
   }
 }

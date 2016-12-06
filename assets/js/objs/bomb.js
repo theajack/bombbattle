@@ -34,6 +34,7 @@ var BOMB={//公用数据
   this.width=range*2;
   this.addLen=(this.power*this.width*2-this.width)/BOMB.maxIndex;
   this.area=getBombAreaIndex(this);//爆炸涉及区域
+  this.pid=obj.id;
   this.canTouch=true;
   this.range=0;
   this.textStyle="";
@@ -111,6 +112,10 @@ var BOMB={//公用数据
     if(b.testObj(obj)){
       if(obj.behurt(b.damage)){
         RIVAL.removeObj(obj);
+        RIVAL.add({
+          "x":getRp(),
+          "y":getRp()
+        })
       };
     }
   });
