@@ -1,0 +1,203 @@
+body{
+  position:fixed;
+  overflow:hidden;
+}
+#gameCanvas{
+  background-color: #eee;
+  margin:0;
+  cursor:url(../images/cursor.png),auto;
+  
+}
+#wrapper{
+  width:300px;
+  position:absolute;
+  z-index:5;
+  margin:10px;
+  cursor:url(../images/cursor.png),auto;
+}
+#wrapper.phone{
+	display:none;
+}
+.set,.score{
+  text-align:center;
+  width:300px;
+  margin-bottom:10px;
+  padding-top:10px;
+  padding-bottom:1px;
+}
+.score.phone{
+	display:block;
+	position: absolute;
+    width: 120px;
+	margin:5px;
+}
+.set.phone{
+	position: absolute;
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 10%;
+	display: none;
+    z-index: 5;
+}
+.set-text{
+  color:#fff;
+  margin-right:10px;
+}
+.set-input{
+  width: 100px;
+  background-color: rgba(255,255,255,0.7);
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+.set-item{
+  margin-bottom:10px;
+}
+.set-item-btn{
+	width: 50%;
+  margin: 0 auto;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.set-item-btn.phone{
+    width: 170px;
+}
+.score-score{
+  color: #fff;
+  margin: 0 10px;
+  font-size: 25px;
+}
+#time,#score{
+  font-weight:bold;
+  margin:0 2px;
+}
+.score-item{
+  margin-bottom:15px;
+}
+.score-item.phone{
+  margin-bottom:5px;
+	
+}
+.fun-btn{    
+  font-size: 30px;
+  color: rgba(255,255,255,0.7);
+  margin: 0 20px;
+  cursor:pointer;
+}
+.fun-btn.phone{
+	margin:0 5px;
+}
+.fun-btn span{
+	font-size:10px;
+}
+#showInfo{
+  position: absolute;
+  z-index: 3;
+  top: 0px;
+  text-align: center;
+  width: 100%;
+  margin-top:100px;
+}
+#showInfoWrapper{
+  width: 500px;
+  margin: 0 auto;
+  background-color: rgba(255,0,0,0.6);
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 15px;
+}
+#showInfoWrapper.phone{
+    width: 80%;
+    padding: 10px;
+    border-radius: 15px;
+}
+.info-img{
+	height:66px;
+}
+.info-img.phone{
+	height:30px;
+}
+#showInfoText{
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 20px;
+  position: relative;
+  top: 9px;
+}
+#showInfoText.phone{
+	font-size: 20px;
+    margin: 5px;
+    top: 4px;
+}
+.show-set-btn{
+	display:none!important;
+}
+.show-set-btn.phone{
+	display: block!important;
+    position: absolute;
+    font-size: 20px;
+    height: 40px;
+    width: 40px;
+    right: 0;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 50%;
+    padding: 10px;
+    color: rgba(255,255,255,0.7);
+    margin: 5px;
+}
+.common-div{
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 20px;
+}
+#mapCanvas{
+  border-radius: 5px;
+}
+#controlWrapper.phone{
+  display:block!important;
+  height: 100px;
+  width: 100px;
+  border-radius: 75px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  box-shadow: 0 0 10px 0px #222;
+  opacity: 0.8;
+}
+#controlBtn{
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  box-shadow: 0 0 10px 0px #222;
+}
+#controlCover{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+#controlCover.phone{
+  display:block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
