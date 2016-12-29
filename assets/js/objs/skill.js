@@ -26,9 +26,9 @@ var SKILL={
   "set":[],
   "size":0,
   "idNum":0,
-  "range":range,
+  "range":range+10,
   "getRandType":function(){
-    return getRandomNum(1,this.type.num*2);
+    return getRandomNum(0,this.type.num+2);//this.type.num*2);
   },
   "init":function(){
     for(var i=0;i<blockNum;i++){

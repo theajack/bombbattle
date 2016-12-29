@@ -108,30 +108,33 @@ var BOMB={//公用数据
       bomb.beBombed();
     }
   });
-  RIVAL.eachByPosArray(this.area,function(obj){
-    if(b.testObj(obj)){
-      if(obj.behurt(b.damage)){
-        RIVAL.removeObj(obj);
-        RIVAL.add({
-          "x":getRp(),
-          "y":getRp()
-        })
-      };
-    }
-  });
+  if(this.pid==player.id){
+    RIVAL.eachByPosArray(this.area,function(obj){
+      if(b.testObj(obj)){
+        if(obj.behurt(b.damage)){
+          RIVAL.removeObj(obj);
+          killRival();
+          /*RIVAL.add({
+            "x":getRp(),
+            "y":getRp()
+          })*/
+        };
+      }
+    });
+  }
   WALL.eachByPosArray(this.area,function(obj){
     if(b.testObj(obj)){
       obj.beBombed(b.id);
     }
   });
-  SKILL.eachByPosArray(this.area,function(obj){
+  /*SKILL.eachByPosArray(this.area,function(obj){
     if(b.testObj(obj)){
       obj.beBombed(b.id);
     }
-  });
+  });*/
   if(this.testObj(player)){
     if(player.behurt(this.damage)){
-      //alert("loose");
+      gameLoose();
     }
   }
 };Bomb.prototype.testObj=function(obj){

@@ -1,7 +1,7 @@
 //墙
 var WALL={
-  "geneTime":2000,
-  "initNum":50,
+  "geneTime":1000,
+  "initNum":100,
   "maxNum":200,
   "range":range,
   "idNUm":0,

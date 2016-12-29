@@ -26,7 +26,7 @@ var BOMBER={
   this.isPosChange=false;
   this.posBi=0;
   this.area=[];//涉及区域
-  this.name="二哈";
+  this.name=names[getRandomNum(0,nameNum-1)];
   this.statuText="";
   this.textStyle="";
   this.showStatu=false;
@@ -34,8 +34,8 @@ var BOMBER={
   this.bombNum=0;//已放置炸弹数
   this.bombMaxNum=2;
   this.speed=1.5;//速度
-  this.hp=3;//生命值
-  this.power=6;//炸弹范围
+  this.hp=5;//生命值
+  this.power=8;//炸弹范围
   this.damage=1;//伤害
   addProtoFun(Bomber,playerFun);
 };Bomber.prototype.getPosJson=function(){
@@ -76,7 +76,9 @@ var BOMBER={
     this.drawStatu();
   }
   getNameTextStyle();
-  ctx.fillText(this.name+"  "+this.hp,pos.x,pos.y);
+  //ctx.fillText(this.name+"  "+this.hp,pos.x,pos.y);
+  ctx.fillText(this.name,pos.x,pos.y-this.range-25);
+  ctx.fillText("HP:"+this.hp+" D:"+this.damage,pos.x,pos.y-this.range-10);
   map.drawLittle(this.x,this.y,"#fff");
 };Bomber.prototype.act=function(){
   this.dis=countDis(this.x,this.y,this.tx,this.ty);

@@ -1,4 +1,19 @@
-
+var names=["珍爱生命远离网络","缺氧的鱼","姐的大姨妈都比你红","别逼我耍流氓╮","蹲在坟前听鬼讲故事","妈妈说名字长才有帅哥聊天","专治各种不服","尒蕏萉萉","盯着作业唱征服",
+"首席男妓","你这磨人的小妖精","男神沒有经","性感的毛毛虫","阿姨，借你儿子还你孙子","我娘她女儿真萌","简单有趣的网名","拿老公换糖吃￢ε￢","待我长发及腰已成千年老妖",
+"嘟嘟小嘴耍任性","中央勤爆菊特工","夜袭女儿国","吃了范冰冰就会杜拉拉","www.keaidian.com","现实强奸了过去留下个回忆","谁动朕江山，朕掘他老坟","帅dē掉渣","别看了你帅不过我的",
+"花样作死冠军","щǒ就是这麽拽","念来过倒会比逗","(*ˉ︶ˉ*)","简单有趣的网名","帅得一塌糊涂","ε未簖奶","麻麻说名字起的长能吓屎人","萌萌兔﹥ε﹤","笑出腹肌","大白(●—●)","叼着香烟吻妳",
+"加载失败……","爺、獨霸怡葒院","半夜睡不着看什么都像鬼","帅哥，麻烦借下肩膀","國妓總姦、","讨厌那些网名取得很长的人","三岁就很酷","胸小随我爸","此用户已成仙","丑到无可挑剔",
+"小怪兽ゞ","城里套路深，我要回农村","花式撩妹王","网名长了能撩妹","我是可乐我会冒泡","踩着棺材跳鬼步","抢了我辣条还想跑","微信有趣网名大全","大王叫我来巡山","酷到被通缉",
+"罗密欧与猪过夜","搞笑有趣的网名，微信有趣网名大全","尐饭团^ǒ^","巴扎嘿","此号已废","囿點尛錍氣〆","对不起，网名太长无法显示","一身祖宗味儿","夜闯女儿国","小猪丁丁",
+"不帅你报警","把花心的男人捐给灾区","谈情不如逗狗","非洲小白脸","网名是个什么东西","都是白开水装什么优乐美","怪咖逗比","此男子、急需被征服","正在缓冲……99%",
+"本人智商已欠费","小姐，你好胸哦","容嬷嬷快拿针扎她","风吹裤裆毛飞扬","一懒众衫小","步子迈大了难免扯着蛋","身娇体弱易推倒的小萝莉","不吃貓de魚","舂夢茽冇妳","爱污及污",
+"吃饭睡觉打豆豆","不会游泳的鱼","打小就酷","一念苍井便成空","(o゜▽゜o)","辣条味的小仙女","唐僧也就是個耍猴的","坐在坟头戏弄鬼","说你是猪人家猪都不乐意","吃饭睡觉拉粑粑",
+"走，结婚去，我请客","感觉男神的身上有wifi","奈何桥被强拆了","嘴贱欠吻","月老，下次麻烦给我打死结","小姐，你比猪还瘦","時間煮雨莪煮魚i","啦啦啦，我是卖萌的小行家",
+"心中的小鹿已撞死ぃ","柔情似水似你妹@","秃驴，给爷笑①個","猪肉涨价了，你也值钱了","搞笑逗比的QQ网名","给儿子聘个妈","凹凸曼暗恋小怪兽","[人丑就要多读书]","我要回幼儿园当学霸",
+"｀怪咖","神经领袖i","逗比代表","其实我不笨只不过懒得聪明","抱着鱼睡觉的猫♂","老衲丶只沾花不惹草","太阳是我搓圆滴","来一瓶82年的敌敌畏","24K.纯帅√","八百逗逼奔北坡",
+"你不爱我，这是病，得治","妈！我被猪亲了一口","删了你之后网速明显快了","总有太监想骚扰本宫","√","啊！我被作业包围了","一个连老天爷都嫉妒的男人","专业挖墙角","老师，我晕课",
+"对着太阳喊声日","姑娘，你有大胸之兆","考试什么一点都不酷","国民男神经丷","岁月是把猪饲料","磨磨叽叽o○","待姐长发及腰定要勒死你","幼稚鬼﹥ε﹤"];
+var nameNum=names.length;
 var canvas,ctx,mapCanvas,mctx;
 var map,player;//objs
 var isPause=false;
@@ -7,6 +22,7 @@ var playerImg,aiImg,bombImg,fireImgw,fireImgh,wallImg,skillImg;//img
 var time=0;
 var score=0;
 var socket;
+var enemyNum=RIVAL.aiNum;
 $(function(){
   if(isMobile()){
 	  $(".change").addClass("phone");
@@ -31,7 +47,7 @@ function init(){
     });
   }
   initEvent();
-  
+  $("#enemy").text(enemyNum);
 }
 function handleData(data){
   var d=$.parseJSON(data);
@@ -101,6 +117,21 @@ function initObjs(){
   }
   //player.isInvici=true;
   //player.range=30;
+}
+function gameLoose(){
+	isOver=true;
+	$("#showInfo").slideDown();
+}
+function gameSuccess(){
+	isOver=true;
+  alert("胜利");
+}
+function killRival(){
+  enemyNum--;
+  $("#enemy").text(enemyNum);
+  if(enemyNum==0){
+    gameSucess();
+  }
 }
 function geneRivals(){
   for(var i=0;i<RIVAL.aiNum;i++){
@@ -212,12 +243,12 @@ function exeGame(){
   //    socket.sendPlayerPos();
   //  },sendt);
   //}
-  /*setInterval(function(){
+  setInterval(function(){
     if(!isPause&&!isOver){
 		this.time+=0.1;
 		$("#time").text(time.toFixed(1));
     }
-  },100);*/
+  },100);
 }
 function act(){
   if(!isPause&&!isOver){
@@ -263,7 +294,7 @@ function gameOver(){
   $("#showInfo").slideDown();
 }
 function pause(){
-	/*if(!isOver){
+	if(!isOver){
     if(!isPause){
       isPause=true;
       $("#pauseBtn").removeClass("glyphicon-play").addClass("glyphicon-pause");
@@ -271,9 +302,10 @@ function pause(){
       isPause=false;
       $("#pauseBtn").removeClass("glyphicon-pause").addClass("glyphicon-play");
     }
-	}*/
+	}
 }
 function restart(){
+  location.reload();
 	/*isOver=false;
 	player.restart();
 	$("#showInfo").slideUp();
@@ -282,10 +314,10 @@ function restart(){
 document.onkeydown=function(event){
 	var e = event || window.event || arguments.callee.caller.arguments[0];
 	if(e && e.keyCode==32){ // 空格
-		 //pause();
-	   }            
-	 if(e && e.keyCode==13){ // enter 键
-		 //restart();
+    pause();
+  }            
+  if(e && e.keyCode==13){ // enter 键
+   restart();
 	}
 }; 
 

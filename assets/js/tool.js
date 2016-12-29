@@ -169,7 +169,7 @@ function getStatuTextStyle(){
 }
 function getNameTextStyle(){
   ctx.fillStyle="#000";
-  ctx.font = "normal 22px Arial"; 
+  ctx.font = "normal 15px Arial"; 
 }
 function setTextSize(size){
   ctx.font = "normal "+size+"px Arial"; 
