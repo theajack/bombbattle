@@ -25,9 +25,12 @@ var socket;
 var enemyNum=RIVAL.aiNum;
 $(function(){
   if(isMobile()){
-    RIVAL.aiNum=30;
+    RIVAL.aiNum=20;
+    enemyNum=RIVAL.aiNum;
     mapLen=1200;
-    Wall.initNum=30;
+    //lmapLen=120;
+    WALL.initNum=40;
+    WALL.maxNum=80;
 	  $(".change").addClass("phone");
 	  //$(".show-set-btn").click(showSet);
     resetLittleMap();

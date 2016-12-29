@@ -33,8 +33,8 @@ function resetLittleMap(){
   var min=(winHeight<winWidth)?winHeight:winWidth;
   if(min<600){
     lmapLen=min/2
-    rate=lmapLen/mapLen;
   }
+  rate=lmapLen/mapLen;
 }
 function getRandomNum(Min,Max){  
   return (Min + Math.round(Math.random() * (Max - Min)));   
