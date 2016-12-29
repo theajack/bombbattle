@@ -16,7 +16,10 @@ body{
   cursor:url(../images/cursor.png),auto;
 }
 #wrapper.phone{
-	display:none;
+	width:100%;
+}
+.btn-text.phone{
+  display:none;
 }
 .set,.score{
   text-align:center;
@@ -77,8 +80,7 @@ body{
   margin-bottom:15px;
 }
 .score-item.phone{
-  margin-bottom:5px;
-	
+  margin-bottom:0px;
 }
 .fun-btn{    
   font-size: 30px;
@@ -150,10 +152,18 @@ body{
 }
 .common-div{
   background-color: rgba(0,0,0,0.3);
-  border-radius: 20px;
-}
-#mapCanvas{
   border-radius: 5px;
+}
+.common-div.score.phone{
+  width: 100px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 20px;
+  margin-top:0;
+}
+#wrapper.phone{
+  width:100%;
 }
 #controlWrapper.phone{
   display:block!important;
@@ -184,7 +194,6 @@ body{
 #controlCover.phone{
   display:block;
 }
-
 
 
 
