@@ -23,7 +23,7 @@ var time=0;
 var score=0;
 var socket;
 var enemyNum=RIVAL.aiNum;
-$(function(){
+J.ready(function(){
   if(isMobile()){
     RIVAL.aiNum=20;
     enemyNum=RIVAL.aiNum;
@@ -31,11 +31,10 @@ $(function(){
     //lmapLen=120;
     WALL.initNum=40;
     WALL.maxNum=80;
-	  $(".change").addClass("phone");
-	  //$(".show-set-btn").click(showSet);
+	  J.class("change").addClass("phone");
+	  //J.class("show-set-btn").event("click",showSet);
     resetLittleMap();
   }else{
-    
   }
   init();
   exeGame();
@@ -53,10 +52,10 @@ function init(){
     });
   }
   initEvent();
-  $("#enemy").text(enemyNum);
+  J.id("enemy").text(enemyNum);
 }
 function handleData(data){
-  var d=$.parseJSON(data);
+  var d=JSON.parse(data);
   if(d.state=="act"){
     //RIVAL.selectByIdAndPos(d.x,d.y,d.id).modAttr(d);
     RIVAL.selectById(d.id).modAttr(d);
@@ -67,7 +66,7 @@ function handleData(data){
    }else if(d.state=="del"){
      RIVAL.removeById(d.id);
    }else{//加载已有的玩家
-    $.each(d,function(i,one){
+    d.each(function(one,i){
       addRival(one);
     });
    }
@@ -126,17 +125,17 @@ function initObjs(){
 }
 function gameLoose(){
 	isOver=true;
-	$("#showInfo").slideDown();
+	J.id("showInfo").slideDown();
 }
 function gameSuccess(){
 	isOver=true;
-  alert("胜利");
+  Jet.showWait("胜利","success")
 }
 function killRival(){
   enemyNum--;
-  $("#enemy").text(enemyNum);
+  J.id("enemy").text(enemyNum);
   if(enemyNum==0){
-    gameSucess();
+    gameSuccess();
   }
 }
 function geneRivals(){
@@ -154,19 +153,19 @@ var startY=cy;
 //http://www.cnblogs.com/iamlilinfeng/p/4239957.html
 function initEvent(){
   if(isMobile()){
-    new Hammer($("#controlCover")[0]).on("pan", setPhoneTarget);
+    new Hammer(J.id("controlCover")).on("pan", setPhoneTarget);
     new Hammer(canvas).on("tap",placeBomb);
   }else{
     canvas.onmousemove=setTarget;
-    $("#wrapper").mousemove(setTarget);
+    J.id("wrapper").event("onmousemove",setTarget);
     canvas.onclick=placeBomb;
-    $("#wrapper").click(placeBomb);
+    J.id("wrapper").event("onclick",placeBomb);
   }
   //canvas.onmouseup=speeddown;
   //$("#wrapper").mouseup(speeddown);
-  $("#pauseBtn").click(pause);
-  $("#restartBtn").click(restart);
-  $(".set-item-btn").click(geneNewGame);
+  J.id("pauseBtn").event("onclick",pause);
+  J.id("restartBtn").event("onclick",restart);
+  J.class("set-item-btn").event("onclick",geneNewGame);
   window.onresize=resize;
 }
 
@@ -174,17 +173,17 @@ var isFirst=true;
 function setPhoneTarget(e){
   if(e.isFinal){
     isFirst=true;
-    $("#controlWrapper").css({
+    J.id("controlWrapper").css({
       "left":(10)+"px",
       "top":(winHeight-10-cwLen)+"px"
     });
-    $("#controlBtn").css({
+    J.id("controlBtn").css({
       "left":cbRange+"px",
       "top":cbRange+"px"
     });
   }else{
     if(isFirst){
-      $("#controlWrapper").css({
+      J.id("controlWrapper").css({
         "left":(e.pointers[0].clientX-cwRange)+"px",
         "top":(e.pointers[0].clientY-cwRange)+"px"
       })
@@ -192,7 +191,7 @@ function setPhoneTarget(e){
     }
   }
   if(e.distance<range/2){
-    $("#controlBtn").css({
+    J.id("controlBtn").css({
       "left":(cbRange)+"px",
       "top":(cbRange)+"px"
     })
@@ -200,7 +199,7 @@ function setPhoneTarget(e){
     var d = countDegByDxy(e.deltaX,e.deltaY);
     var x=cwRange*Math.cos(d)+cbRange;
     var y=cwRange*Math.sin(d)+cbRange;
-    $("#controlBtn").css({
+    J.id("controlBtn").css({
       "left":(x)+"px",
       "top":(y)+"px"
     })
@@ -211,18 +210,12 @@ function placeBomb(){
   player.placeBomb();
 }
 function geneNewGame(){
-	/*var data=getFormVal("set");
-  pause();
-  //geneAis(data.aiNum);
-  //rivals[0].changeAiPara(data.aiRange,data.aiSpeed);
-  pause();
-  restart();*/
 }
 /*function speeddown(){
-	player.speed=parseFloat($("[data-name='playerSpeed']").val());
+	player.speed=parseFloat(s("[data-name='playerSpeed']").val());
 }
 function speedup(){
-	player.speed=parseFloat($("[data-name='playerSpeed']").val())*2;
+	player.speed=parseFloat(s("[data-name='playerSpeed']").val())*2;
 }*/
 function setTarget(event){
   player.setTarget(event.clientX,event.clientY);
@@ -252,7 +245,7 @@ function exeGame(){
   setInterval(function(){
     if(!isPause&&!isOver){
 		this.time+=0.1;
-		$("#time").text(time.toFixed(1));
+		J.id("time").text(time.toFixed(1));
     }
   },100);
 }
@@ -297,16 +290,16 @@ function gameOver(){
   /*for(i in ais){
     ais[i].drawAi();
   }*/
-  $("#showInfo").slideDown();
+  J.id("showInfo").slideDown();
 }
 function pause(){
 	if(!isOver){
     if(!isPause){
       isPause=true;
-      $("#pauseBtn").removeClass("glyphicon-play").addClass("glyphicon-pause");
+      J.id("pauseBtn").removeClass("glyphicon-play").addClass("glyphicon-pause");
     }else{
       isPause=false;
-      $("#pauseBtn").removeClass("glyphicon-pause").addClass("glyphicon-play");
+      J.id("pauseBtn").removeClass("glyphicon-pause").addClass("glyphicon-play");
     }
 	}
 }
@@ -314,7 +307,7 @@ function restart(){
   location.reload();
 	/*isOver=false;
 	player.restart();
-	$("#showInfo").slideUp();
+	J.id("showInfo").slideUp();
 	time=0;*/
 }
 document.onkeydown=function(event){
@@ -327,41 +320,8 @@ document.onkeydown=function(event){
 	}
 }; 
 
-/*  获取表单的值  */
-function getFormVal(formId){
-  var dataObj = getElemsObj(formId,"data-name");
-  return(dataObj);
-}
-function getElemsObj(formId,name){
-  $inputs = $("#"+formId).find('['+name+']');
-  var dataObj = {};  //json对象  键值对
-  //data["name"]="shi";
-  $.each($inputs,function(i,input){
-    var property = $(input).attr(name);
-    var value = $(input).val();
-    dataObj[property] = value;
-  });
-  return dataObj;
-}
-function setFormVal(formId,data){
-  setObjVal("#"+formId,data);
-}
-function setObjVal(obj,data){
-  $inputs = $(obj).find('[data-name]');
-  $.each($inputs,function(i,input){
-    var dname=$(input).attr('data-name')
-    if(isDate(dname)){
-      data[dname]=modDate(data[dname]);
-    }
-    if($(input)[0].tagName=="INPUT"){
-      $(input).val(data[dname]);
-    }else{
-      $(input).text(data[dname]);
-    }
-  });
-}
 function showSet(){
-	$(".set.phone").slideToggle();
+	s(".set.phone").slideToggle();
 }
 
 
