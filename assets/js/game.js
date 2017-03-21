@@ -42,6 +42,14 @@ J.ready(function(){
 function init(){
   initSource();
   initObjs();
+  J.body().event({
+    ontouchmove:function(event){
+      event.preventDefault();
+    },
+    ontouchstart:function(event){
+      event.preventDefault();
+    }
+  });
   if(!RIVAL.isAi){
     socket=new Socket();
   }else{
@@ -125,11 +133,11 @@ function initObjs(){
 }
 function gameLoose(){
 	isOver=true;
-	J.id("showInfo").slideDown();
+	gameOver();
 }
 function gameSuccess(){
 	isOver=true;
-  Jet.showWait("胜利","success")
+  J.showWait("胜利","success");
 }
 function killRival(){
   enemyNum--;
@@ -290,7 +298,8 @@ function gameOver(){
   /*for(i in ais){
     ais[i].drawAi();
   }*/
-  J.id("showInfo").slideDown();
+  J.showWait("您已阵亡","error");
+  //J.id("showInfo").slideDown();
 }
 function pause(){
 	if(!isOver){
