@@ -25,16 +25,16 @@ var socket;
 var enemyNum=RIVAL.aiNum;
 J.ready(function(){
   if(isMobile()){
-    RIVAL.aiNum=20;
+    RIVAL.aiNum=15;
     enemyNum=RIVAL.aiNum;
-    mapLen=1200;
+    mapLen=1000;
     //lmapLen=120;
-    WALL.initNum=40;
-    WALL.maxNum=80;
-	  J.class("change").addClass("phone");
+    WALL.initNum=30;
+    WALL.maxNum=60;
 	  //J.class("show-set-btn").event("click",showSet);
     resetLittleMap();
   }else{
+	  J.class("change").removeClass("phone");
   }
   init();
   exeGame();
@@ -42,14 +42,7 @@ J.ready(function(){
 function init(){
   initSource();
   initObjs();
-  J.body().event({
-    ontouchmove:function(event){
-      event.preventDefault();
-    },
-    ontouchstart:function(event){
-      event.preventDefault();
-    }
-  });
+  scrollFix();
   if(!RIVAL.isAi){
     socket=new Socket();
   }else{
@@ -61,6 +54,16 @@ function init(){
   }
   initEvent();
   J.id("enemy").text(enemyNum);
+}
+function scrollFix(){
+  J.body().event({
+    ontouchmove:function(event){
+      event.preventDefault();
+    },
+    ontouchstart:function(event){
+      event.preventDefault();
+    }
+  });
 }
 function handleData(data){
   var d=JSON.parse(data);
@@ -163,16 +166,18 @@ function initEvent(){
   if(isMobile()){
     new Hammer(J.id("controlCover")).on("pan", setPhoneTarget);
     new Hammer(canvas).on("tap",placeBomb);
+    new Hammer(J.id("pauseBtn")).on("tap",pause);
+    new Hammer(J.id("restartBtn")).on("tap",restart);
   }else{
     canvas.onmousemove=setTarget;
     J.id("wrapper").event("onmousemove",setTarget);
     canvas.onclick=placeBomb;
     J.id("wrapper").event("onclick",placeBomb);
+    J.id("pauseBtn").event("onclick",pause);
+    J.id("restartBtn").event("onclick",restart);
   }
   //canvas.onmouseup=speeddown;
   //$("#wrapper").mouseup(speeddown);
-  J.id("pauseBtn").event("onclick",pause);
-  J.id("restartBtn").event("onclick",restart);
   J.class("set-item-btn").event("onclick",geneNewGame);
   window.onresize=resize;
 }
@@ -237,7 +242,7 @@ function resize(){
   canvas.width=winWidth;
   canvas.height=winHeight;
 }
-  var i=1;
+var i=1;
 function exeGame(){
   setInterval(function(){
     act();

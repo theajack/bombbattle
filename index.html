@@ -18,81 +18,26 @@
     <link rel="stylesheet" href="assets/css/base.min.css">
   </head>
   <body class="bg-white">
-    <div id="wrapper" class="change">
-      <canvas id="mapCanvas" class="common-div change">
+    <div id="wrapper" class="change phone">
+      <canvas id="mapCanvas" class="common-div change phone">
         
       </canvas>
-      <div class="score common-div change">
-        <div class="score-item change">
-          <span class="score-score"><span class="btn-text change">时间:</span><span id="time">0</span></span>
-          <span class="score-score"><span class="btn-text change">敌军:</span><span id="enemy">0</span></span>
+      <div class="score common-div change phone">
+        <div class="score-item change phone">
+          <span class="score-score"><span class="btn-text change phone">时间:</span><span id="time">0</span></span>
+          <span class="score-score"><span class="btn-text change phone">敌军:</span><span id="enemy">0</span></span>
         </div>
-        <div class="score-item change">
-          <span class="fun-btn glyphicon glyphicon-play change" id="pauseBtn"><span class="btn-text change">(空格)</span></span>
-          <span class="fun-btn glyphicon glyphicon-repeat change" id="restartBtn"><span class="btn-text change">(回车)</span></span>
+        <div class="score-item change phone">
+          <span class="fun-btn glyphicon glyphicon-play change phone" id="pauseBtn"><span class="btn-text change phone">(空格)</span></span>
+          <span class="fun-btn glyphicon glyphicon-repeat change phone" id="restartBtn"><span class="btn-text change phone">(回车)</span></span>
         </div>
       </div>
-      <!--<div class="score common-div display-none">
-        <div class="score-item">
-          <span class="score-score">时间:<span id="time">0</span></span>
-          <span class="score-score">得分:<span id="score">0</span></span>
-        </div>
-        <div class="score-item">
-          <span class="fun-btn glyphicon glyphicon-play" id="pauseBtn"><span>(空格)</span></span>
-          <span class="fun-btn glyphicon glyphicon-repeat" id="restartBtn"><span>(回车)</span></span>
-        </div>
-      </div>-->
     </div>
-	
-    <!--<div class="set phone display-none">
-        <div class="set-item">
-          <span class="set-text">doge数量</span>
-          <input class="set-input" type="number" placeholder="默认为100" value="100" data-name="aiNum"/>
-        </div>
-        <div class="set-item">
-          <span class="set-text">doge半径</span>
-          <input class="set-input" type="number" placeholder="默认为20" value="20" data-name="aiRange"/>
-        </div>
-        <div class="set-item">
-          <span class="set-text">二哈半径</span>
-          <input class="set-input" type="number" placeholder="默认为20" value="20" data-name="playerRange"/>
-        </div>
-        <div class="set-item">
-          <span class="set-text">doge速度</span>
-          <input class="set-input" type="number" placeholder="默认为1.5" value="1.5" data-name="aiSpeed"/>
-        </div>
-        <div class="set-item">
-          <span class="set-text">二哈速度</span>
-          <input class="set-input" type="number" placeholder="默认为1.5" value="1.5" data-name="playerSpeed"/>
-        </div>
-		
-        <div class="set-item">
-          <div class="set-item-btn phone">生成游戏</div>
-        </div>
-      </div>
-      <div class="score change display-none">
-        <div class="score-item phone">
-          <span class="score-score">时间:<span id="time">0</span></span>
-          <span class="score-score">得分:<span id="score">0</span></span>
-        </div>
-        <div class="score-item phone">
-          <span class="fun-btn phone glyphicon glyphicon-play" id="pauseBtn"></span>
-          <span class="fun-btn phone glyphicon glyphicon-repeat" id="restartBtn"></span>
-        </div>
-      </div>-->
-	  <!--<span class="show-set-btn change glyphicon glyphicon-cog"></span>-->
     <canvas id="gameCanvas"></canvas>
-    <div id="showInfo" class="display-none change">
-      <div id="showInfoWrapper" class="change">
-        <img src="assets/images/enemy.png" class="info-img change"/>
-        <span id="showInfoText" class="change">你的二哈已阵亡</span>
-        <img src="assets/images/normal.png" class="info-img change"/>
-      </div>
-    </div>
-    <div id="controlWrapper" class="common-div change display-none">
+    <div id="controlWrapper" class="common-div change phone display-none">
       <div id="controlBtn" class="common-div"></div>
     </div>
-    <div id="controlCover" class="change display-none"></div>
+    <div id="controlCover" class="change phone display-none"></div>
     <script src="assets/js/hammer.js"></script>
     <script src="assets/js/jetter.min.js"></script>
     <script src="assets/js/tool.js"></script>
@@ -104,6 +49,5 @@
     <script src="assets/js/objs/wall.js"></script>
     <script src="assets/js/objs/skill.js"></script>
     <script src="assets/js/game.js"></script>
-    <script src="assets/js/logo.js"></script>
   </body>
 </html>
