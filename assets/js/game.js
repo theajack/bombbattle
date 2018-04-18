@@ -247,9 +247,7 @@ function exeGame(){
   setInterval(function(){
     act();
   },actt);
-  setInterval(function(){
-    draw();
-  },drawt);
+  draw();
   //if(!RIVAL.isAi){
   //  setInterval(function(){
   //    socket.sendPlayerPos();
@@ -296,6 +294,7 @@ function draw(){
     });
     player.draw();
   }
+  requestAnimationFrame(draw);
 }
 function gameOver(){
   //isOver=true;
